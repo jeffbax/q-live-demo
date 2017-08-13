@@ -1,0 +1,45 @@
+{
+  "players": [
+    {
+      "id": 1,
+      "name": "Thresh",
+      "avatar": "fiend.png",
+      "rank": 1
+    }, {
+      "id": 2,
+      "name": "F4ker",
+      "avatar": "grunt.png",
+      "rank": 4
+    }, {
+      "id": 3,
+      "name": "Fatal1ty",
+      "avatar": "knight.png",
+      "rank": 2
+    }, {
+      "id": 4,
+      "name": "Moon",
+      "avatar": "ogre.png",
+      "rank": 5
+    }, {
+      "id": 5,
+      "name": "Vigoss",
+      "avatar": "scrag.png",
+      "rank": 6
+    }, {
+      "id": 6,
+      "name": "Diago",
+      "avatar": "spawn.png",
+      "rank": 3
+    }, {
+      "id": 7,
+      "name": "puff",
+      "avatar": "shambler.png",
+      "rank": 7
+    }, {
+      "id": 8,
+      "name": "lamelama",
+      "avatar": "vore.png",
+      "rank": 8
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "servers": [
+    { "name": "Fong's Pain Pad", "mod": "ca", "map": "dm3" },
+    { "name": "Clowns Mirror House", "mod": "ca", "map": "e2m6" },
+    { "name": "2Forts2Furious", "mod": "tf", "map": "2fort5" },
+    { "name": "Just the Classics", "mod": "dm", "map": "e1m7" },
+    { "name": "John Romero's Severed Head", "mod": "tf", "map": "well6" }
+  ]
+}
