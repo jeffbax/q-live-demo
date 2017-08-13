@@ -1,13 +1,19 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import BuildRoutes from './routes';
+import Routes from './routes';
 import AppFrame from './components/AppFrame';
 
-export default () => (
-  <BrowserRouter>
-    <AppFrame>
-      { BuildRoutes() }
-    </AppFrame>
-  </BrowserRouter>
-);
+class App extends React.Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <AppFrame>
+          <Routes/>
+        </AppFrame>
+      </BrowserRouter>
+    );
+  }
+}
+
+export default App;
