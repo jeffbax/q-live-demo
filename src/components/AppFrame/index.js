@@ -5,14 +5,18 @@ import Grid from 'react-bootstrap/lib/Grid';
 import './app-frame.css';
 import Navigation from '../Navigation';
 
-const AppFrame = ({ children }) => (
-  <div>
-    <Navigation />
-    <Grid>
-      { children }
-    </Grid>
-  </div>
-);
+class AppFrame extends React.Component {
+  render() {
+    return (
+      <div>
+        <Navigation />
+        <Grid>
+          { this.props.children }
+        </Grid>
+      </div>
+    );
+  }
+}
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
