@@ -1,6 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
-
+import React, { Component } from 'react';
 import './players.css';
 
 export default class Players extends Component {
@@ -9,9 +7,8 @@ export default class Players extends Component {
   // state = {}
 
   render() {
-    const { className, ...props } = this.props;
     return (
-      <div className={classnames('Players', className)} {...props}>
+      <div className="Players">
         <h1>
           Players
         </h1>

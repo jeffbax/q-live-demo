@@ -1,6 +1,4 @@
-import React, { PropTypes, Component } from 'react';
-import classnames from 'classnames';
-
+import React, { Component } from 'react';
 import './404.css';
 
 export default class NotFound extends Component {
@@ -9,12 +7,12 @@ export default class NotFound extends Component {
   // state = {}
 
   render() {
-    const { className, ...props } = this.props;
     return (
-      <div className={classnames('NotFound', className)} {...props}>
+      <div className="NotFound">
         <h1>
           404 <small>Not Found :(</small>
         </h1>
+        <video src="404.mp4" autoPlay loop></video>
       </div>
     );
   }

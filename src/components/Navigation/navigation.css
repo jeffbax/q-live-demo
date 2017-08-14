@@ -1,0 +1,28 @@
+.navbar-default {
+  background: black;
+}
+
+.nav-logo {
+    height: 50px;
+    width: 50px;
+}
+
+.navbar-brand {
+  padding: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #ccc;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  color: #fdfb6b;
+}
+
+.navbar-default .navbar-nav > li.active a,
+.navbar-default .navbar-nav > li.active a:hover,
+.navbar-default .navbar-nav > li.active a:active,
+.navbar-default .navbar-nav > li.active a:visited {
+  background: black;
+  color: red;
+}

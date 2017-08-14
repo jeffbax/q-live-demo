@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Navbar from 'react-bootstrap/lib/Navbar';
+import { Nav, Navbar, NavItem } from 'react-bootstrap/lib';
 import { IndexLinkContainer } from 'react-router-bootstrap';
 
 import './navigation.css';
@@ -7,20 +7,27 @@ import './navigation.css';
 class Navigation extends Component {
   render() {
     return (
-      <Navbar>
+      <Navbar className="Navigation">
         <Navbar.Header>
           <Navbar.Brand>
             <IndexLinkContainer to="/">
-              <a>Home</a>
-            </IndexLinkContainer>
-            <IndexLinkContainer to="/rankings">
-              <a>Rankings</a>
-            </IndexLinkContainer>
-            <IndexLinkContainer to="/about">
-              <a>About</a>
+                <a>
+                  <img src="q-live-logo.png" title="Q-Live" alt="Q-Live" className="nav-logo" />
+                </a>
             </IndexLinkContainer>
           </Navbar.Brand>
         </Navbar.Header>
+        <Nav>
+           <IndexLinkContainer to='/servers'>
+            <NavItem>Servers</NavItem>
+          </IndexLinkContainer>
+          <IndexLinkContainer to="/rankings">
+            <NavItem>Rankings</NavItem>
+          </IndexLinkContainer>
+          <IndexLinkContainer to="/about">
+            <NavItem>About</NavItem>
+          </IndexLinkContainer>
+        </Nav>
       </Navbar>
     );
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 
-import Routes from './routes';
+import BuildRoutes from './routes';
 import AppFrame from './components/AppFrame';
 
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <AppFrame>
-          <Routes/>
+          { BuildRoutes() }
         </AppFrame>
       </BrowserRouter>
     );

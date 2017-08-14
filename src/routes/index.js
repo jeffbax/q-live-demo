@@ -8,19 +8,15 @@ import Rankings from './Rankings';
 import Servers from './Servers';
 import NotFound from './404';
 
-class Routes extends React.Component {
-  render() {
-    return (
-      <Switch>
-        <Route exact path="/" component={ Home } />
-        <Route path="/about" component={ About } />
-        <Route path="/players/:playerId" component={ Players } />
-        <Route path="/rankings" component={ Rankings } />
-        <Route path="/servers" component={ Servers } />
-        <Route component={ NotFound } />
-      </Switch>
-    );
-  }
-}
+const BuildRoutes = () => (
+  <Switch>
+    <Route exact path="/" component={ Home } />
+    <Route path="/about" component={ About } />
+    <Route path="/players/:playerId" component={ Players } />
+    <Route path="/rankings" component={ Rankings } />
+    <Route path="/servers" component={ Servers } />
+    <Route component={ NotFound } />
+  </Switch>
+);
 
-export default Routes;
+export default BuildRoutes;
