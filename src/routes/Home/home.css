@@ -22,3 +22,11 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.QLive h2 img {
+  width: auto;
+  max-height: 50px;
+  margin-left: 15px;
+  margin-top: -15px;
+}
