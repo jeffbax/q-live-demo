@@ -21,7 +21,7 @@ class Navigation extends Component {
            <IndexLinkContainer to='/servers/'>
             <NavItem>Servers</NavItem>
           </IndexLinkContainer>
-          <IndexLinkContainer to="/rankings/">
+          <IndexLinkContainer to="/rankings-404/">
             <NavItem>Rankings</NavItem>
           </IndexLinkContainer>
           <IndexLinkContainer to="/about/">
