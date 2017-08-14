@@ -27,10 +27,11 @@ class ServerPlayer extends Player {
   constructor(playerData) {
     super(playerData);
     this.currentFrags = 0;
+    this.currentPing = getRandomInt(33, 400);
   }
 
   get ping() {
-    return getRandomInt(33, 400);
+    return this.currentPing;
   }
 
   get frags() {
@@ -61,7 +62,11 @@ class ServerMatch {
       playerChoices.splice(randomPlayerIdx, 1);
     }
 
-    this._players = finalPlayers;
+    this._players = finalPlayers.sort((a,b) => {
+      if (a.frags < b.frags) return 1;
+      else if (a.frags > b.frags) return -1;
+      else return 0;
+    });
   }
 
   get players() {
@@ -70,5 +75,13 @@ class ServerMatch {
 
   get playerCount() {
     return this.players.length;
+  }
+
+  get maxPlayers() {
+    return PlayerRows.length;
+  }
+
+  getPlayerRank(player) {
+    return this.players.indexOf(player) + 1;
   }
 }

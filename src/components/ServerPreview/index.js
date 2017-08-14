@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { RefreshServer } from '../../data';
+import './server-preview.css';
 
 const modNames = {
   'ca': 'Clan Arena',
@@ -8,12 +9,20 @@ const modNames = {
   'dm': 'Deathmatch'
 };
 
+const mapNames = {
+  'dm3': 'The Abandoned Base',
+  'e1m7': 'The House of Chthon',
+  'e2m6': 'The Necropolis',
+  '2fort5': '2Forts',
+  'well6': 'The Well'
+}
+
 const validSorts = new Set(['frags', 'ping', 'name']);
 
 class ServerPlayerTable extends Component {
   constructor(props) {
     super(props);
-    this.state = {sort: 'frags', ascending: true};
+    this.state = {sort: 'frags', ascending: false};
   }
 
   sortByName() {
@@ -40,13 +49,14 @@ class ServerPlayerTable extends Component {
   }
 
   render() {
-    return (
+    return !this.props.server.players.length ? <p className="NoPlayers">No Active Players :(</p> : (
       <table className="ServerPlayers">
         <thead>
           <tr>
-            <th colSpan="2" onClick={this.sortByName.bind(this)}>Player</th>
-            <th onClick={this.sortByFrags.bind(this)}>Frags</th>
-            <th onClick={this.sortByPing.bind(this)}>Ping</th>
+            <th>Rank</th>
+            <th className="sortable" colSpan="2" onClick={this.sortByName.bind(this)}>Player</th>
+            <th className="sortable" onClick={this.sortByFrags.bind(this)}>Frags</th>
+            <th className="sortable" onClick={this.sortByPing.bind(this)}>Ping</th>
           </tr>
         </thead>
         <tbody>
@@ -60,8 +70,12 @@ class ServerPlayerTable extends Component {
     return this.sortedPlayers.map(p => {
       return (
         <tr key={p.id}>
-          <td><img src={`/avatars/${p.avatar}`} /></td>
-          <td>{p.name}</td>
+          <td>{this.getRank(p)}</td>
+          <td className="playerImage">
+            <img src={`/avatars/${p.avatar}`} alt={p.avatar}
+              className="img-fluid img-rounded" />
+            </td>
+          <td className="playerName">{p.name}</td>
           <td>{p.frags}</td>
           <td>{p.ping}ms</td>
         </tr>
@@ -69,8 +83,12 @@ class ServerPlayerTable extends Component {
     });
   }
 
+  getRank(p) {
+    return this.props.server.getPlayerRank(p);
+  }
+
   get sortedPlayers() {
-    const sorted = [...this.props.players];
+    const sorted = [...this.props.server.players];
     const sortBy = this.state.sort;
     const ascending = this.state.ascending;
 
@@ -99,7 +117,7 @@ export class ServerPreview extends Component {
   }
 
   componentWillMount() {
-    this.refresh(this.props.match.params.serverId);
+    this.buttonRefresh();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -110,10 +128,18 @@ export class ServerPreview extends Component {
     return modNames[modCode] || 'n/a';
   }
 
+  getMapName(map) {
+    return mapNames[map] || 'n/a';
+  }
+
   refresh(serverId) {
     const parsedId = parseInt(serverId, 10);
     const serverMatch = RefreshServer(parsedId);
     this.setState({server: serverMatch});
+  }
+
+  buttonRefresh() {
+    this.refresh(this.props.match.params.serverId);
   }
 
   get server() {
@@ -126,19 +152,25 @@ export class ServerPreview extends Component {
     }
     return (
       <div className="ServerPreview">
-        <h2>{this.server.name}</h2>
-        <dl>
-          <dt>Players</dt>
-          <dd>{this.server.playerCount} / 8</dd>
-          <dt>Map</dt>
-          <dd>{this.server.map}</dd>
-          <dt>Mod</dt>
-          <dd>{this.getModName(this.server.mod)}</dd>
-        </dl>
-        <div className="ServerImage">
-          <img src={`/maps/${this.server.map}.jpg`} />
+        <h2 className="col-12">{this.server.name}</h2>
+        <div className="ServerStats col-sm-6">
+          <dl className="ServerStatus">
+            <dt>Players</dt>
+            <dd>{this.server.playerCount} / {this.server.maxPlayers}</dd>
+            <dt>Map</dt>
+            <dd>{this.getMapName(this.server.map)}</dd>
+            <dt>Mod</dt>
+            <dd>{this.getModName(this.server.mod)}</dd>
+          </dl>
+          <button onClick={this.buttonRefresh.bind(this)}>Refresh Stats</button>
         </div>
-        <ServerPlayerTable players={this.server.players} />
+        <div className="ServerImage col-sm-6">
+          <img src={`/maps/${this.server.map}.jpg`} alt={this.server.map} className="img-rounded img-responsive" />
+        </div>
+        <div className="col-sm-12">
+          <h3>Players</h3>
+          <ServerPlayerTable server={this.server} />
+        </div>
       </div>
     );
   }

@@ -1,0 +1,26 @@
+.ServerPlayers .img-fluid{
+  height: auto;
+  max-width: 50%;
+  text-align: center;
+}
+
+.ServerPlayers .sortable {
+  cursor: pointer;
+}
+
+.ServerPlayers th, .ServerPlayers td {
+  padding: 10px 20px;
+  text-align: center;
+}
+
+.ServerPlayers .playerName {
+  text-align: left;
+}
+.ServerPlayers .playerImage {
+  text-align: right;
+}
+
+.ServerPlayers .NoPlayers {
+  text-align: center;
+  font-style: italic;
+}
