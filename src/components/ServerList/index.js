@@ -1,30 +1,53 @@
 import React, { Component } from 'react';
-import { Players, Servers } from '../../data';
+import { Redirect } from 'react-router';
+import { LinkContainer } from 'react-router-bootstrap';
+import { RefreshServer } from '../../data';
 
 export class ServerPreview extends Component {
-  render(args) {
-    console.log(this.props)
-    const match = {params: {serverId: 1}};
-    const server = Servers.find(s => s.id === match.params.serverId);
-    return <h1>{server.map}</h1>;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      server: null
+    };
+  }
+
+  componentWillMount() {
+    this.refresh(this.props.match.params.serverId);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.refresh(nextProps.match.params.serverId);
+  }
+
+  refresh(serverId) {
+    const parsedId = parseInt(serverId, 10);
+    const serverMatch = RefreshServer(parsedId);
+    this.setState({server: serverMatch});
+  }
+
+  render() {
+    if (!this.state.server) {
+      return <Redirect to="/404" />
+    }
+    return <h1>{this.state.server.map}</h1>;
   }
 }
 
 class ServerItem extends Component {
   render() {
-    return <h3>{this.props.server.name}</h3>
+    return (
+      <LinkContainer to={`/servers/${this.props.server.id}`}>
+        <a>{this.props.server.name}</a>
+      </LinkContainer>
+    )
   }
 }
 
 export class ServerList extends Component {
-  state = {};
 
-  componentWillMount() {
-    this.setState({ servers: this.initServers() });
-  }
-
-  initServers() {
-    return Servers;
+  get servers() {
+    return this.props.servers;
   }
 
   render() {
@@ -36,6 +59,6 @@ export class ServerList extends Component {
   }
 
   renderItems() {
-    return this.state.servers.map(s => <li key={s.id}><ServerItem server={s} /></li>);
+    return this.servers.map(s => <li key={s.id}><ServerItem server={s} /></li>);
   }
 }

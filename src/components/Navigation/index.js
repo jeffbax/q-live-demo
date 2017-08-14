@@ -12,19 +12,19 @@ class Navigation extends Component {
           <Navbar.Brand>
             <IndexLinkContainer to="/">
                 <a>
-                  <img src="q-live-logo.png" title="Q-Live" alt="Q-Live" className="nav-logo" />
+                  <img src="/q-live-logo.png" title="Q-Live" alt="Q-Live" className="nav-logo" />
                 </a>
             </IndexLinkContainer>
           </Navbar.Brand>
         </Navbar.Header>
         <Nav>
-           <IndexLinkContainer to='/servers'>
+           <IndexLinkContainer to='/servers/'>
             <NavItem>Servers</NavItem>
           </IndexLinkContainer>
-          <IndexLinkContainer to="/rankings">
+          <IndexLinkContainer to="/rankings/">
             <NavItem>Rankings</NavItem>
           </IndexLinkContainer>
-          <IndexLinkContainer to="/about">
+          <IndexLinkContainer to="/about/">
             <NavItem>About</NavItem>
           </IndexLinkContainer>
         </Nav>
