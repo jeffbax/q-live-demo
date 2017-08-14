@@ -29,6 +29,10 @@ class ServerPlayer extends Player {
     this.currentFrags = 0;
   }
 
+  get ping() {
+    return getRandomInt(33, 400);
+  }
+
   get frags() {
     return this.currentFrags;
   }
@@ -52,7 +56,7 @@ class ServerMatch {
     while (finalPlayers.length < playerCount) {
       const randomPlayerIdx = getRandomInt(0, playerChoices.length - 1);
       const player = playerChoices[randomPlayerIdx];
-      player.frags = getRandomInt(0, 42);
+      player.frags = playerCount > 1 ? getRandomInt(0, 42) : 0;
       finalPlayers.push(player);
       playerChoices.splice(randomPlayerIdx, 1);
     }

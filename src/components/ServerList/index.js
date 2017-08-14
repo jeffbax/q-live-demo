@@ -1,38 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router';
 import { LinkContainer } from 'react-router-bootstrap';
-import { RefreshServer } from '../../data';
-
-export class ServerPreview extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      server: null
-    };
-  }
-
-  componentWillMount() {
-    this.refresh(this.props.match.params.serverId);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    this.refresh(nextProps.match.params.serverId);
-  }
-
-  refresh(serverId) {
-    const parsedId = parseInt(serverId, 10);
-    const serverMatch = RefreshServer(parsedId);
-    this.setState({server: serverMatch});
-  }
-
-  render() {
-    if (!this.state.server) {
-      return <Redirect to="/404" />
-    }
-    return <h1>{this.state.server.map}</h1>;
-  }
-}
 
 class ServerItem extends Component {
   render() {

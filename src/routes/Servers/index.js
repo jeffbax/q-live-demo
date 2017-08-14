@@ -3,7 +3,8 @@ import { Route } from 'react-router';
 import './servers.css';
 
 import { ServerRows } from '../../data';
-import { ServerList, ServerPreview } from '../../components/ServerList';
+import { ServerList } from '../../components/ServerList';
+import { ServerPreview } from '../../components/ServerPreview';
 
 class Servers extends Component {
   render() {
