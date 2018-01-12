@@ -9,7 +9,7 @@ class NewsItem extends Component {
     return (
       <div>
         <h3>
-          <a href={`https://www.reddit.com/${this.article.permalink}`}>
+          <a href={`https://www.reddit.com${this.article.permalink}`}>
             {this.article.title}
           </a>
         </h3>
